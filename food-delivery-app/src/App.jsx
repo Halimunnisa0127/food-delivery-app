@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
@@ -8,15 +7,16 @@ import RestaurantList from './Components/RestaurantList/RestaurantList';
 import RestaurantDetails from './Components/RestaurantDetails/RestaurantDetails';
 import Cart from './Components/Cart/Cart';
 import CheckOut from './Components/CheckOut/CheckOut';
-import Login from './Components/Login/Login';
 import Footer from './Components/Footer/Footer';
 import SearchResults from './Components/SearchResult/SearchResults';
 
 function AppContent() {
   const location = useLocation();
-  const hideLayoutRoutes = ['/']; // Hide Header & Footer on Login Page
 
-  // ✅ Load from localStorage initially (optional but good)
+  // ✅ Hide Header & Footer on specific routes 
+  const hideLayoutRoutes = [];
+
+  // ✅ Load from localStorage initially
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem("cartItems");
     return savedCart ? JSON.parse(savedCart) : [];
@@ -41,12 +41,12 @@ function AppContent() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Scroll to top on route change
+  // ✅ Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Add item to cart
+  // ✅ Add item to cart
   const handleAddToCart = (newItem) => {
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.name === newItem.name);
@@ -61,7 +61,7 @@ function AppContent() {
     });
   };
 
-  // Change quantity (increase or decrease)
+  // ✅ Change quantity (increase or decrease)
   const handleQuantityChange = (item, delta) => {
     setCartItems(prevItems =>
       prevItems
@@ -83,7 +83,8 @@ function AppContent() {
       )}
 
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* 🟢 Set Home as default route */}
+        <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
         <Route path="/home" element={<Home onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<About />} />
         <Route path="/restaurantlist/:category" element={<RestaurantList onAddToCart={handleAddToCart} />} />

@@ -1,25 +1,28 @@
-.nav {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  top: 0;
+/* Add to your CSS file */
+.navbar-brand {
+  flex-shrink: 0;
 }
 
-.button {
-  border: none !important;
-  box-shadow: none !important;
-  /* optional: removes outline/glow */
+.search-form {
+  min-width: 200px;
 }
 
-.search-bar {
-  left: 50px;
-  width:400px;
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    padding: 1rem 0;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0;
+  }
 }
 
-.icon {
-  position: absolute;
-  margin-top: 9px;
-  margin-left: 10px;
-
-
+@media (min-width: 992px) {
+  .navbar-nav {
+    align-items: center;
+  }
 }
 
+.brand-text {
+  white-space: nowrap;
+}

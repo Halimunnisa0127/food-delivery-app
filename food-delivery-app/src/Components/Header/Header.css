@@ -24,7 +24,7 @@
 }
 @media (max-width: 991px) {
   .navbar-nav .nav-link {
-    font-size: 1.1rem;  /* koncham pedda */
+    font-size: 1.8rem;  /* big font */
     font-weight: 500;
     padding: 8px 0;     /* touch-friendly but not too big */
   }
